@@ -1,0 +1,110 @@
+{% load static %}
+
+{% firstof "Layout" as temp_title %}
+
+<!DOCTYPE html>
+<html lang="pt-br" class="h-100">
+    <head>
+        <link rel="apple-touch-icon" sizes="180x180" href="{% static 'img/favicon/apple-touch-icon.png' %}">
+        <link rel="icon" type="image/png" sizes="32x32" href="{% static 'img/favicon/favicon-32x32.png' %}">
+        <link rel="icon" type="image/png" sizes="16x16" href="{% static 'img/favicon/favicon-16x16.png' %}">
+        <link rel="manifest" href="{% static 'img/favicon/site.webmanifest' %}">
+        <link rel="mask-icon" href="{% static 'img/favicon/safari-pinned-tab.svg' %}" color="#5bbad5">
+        <meta name="msapplication-TileColor" content="#2b5797">
+        <meta name="theme-color" content="#ffffff">
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>::Minimercado:: -- {{ temp_title }}</title>
+
+        <!-- Bootstrap core CSS -->
+        <link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet">
+        <link href="{% static 'fontawesomefree/css/all.min.css' %}" rel="stylesheet" type="text/css">
+
+    </head>
+    <body class="d-flex flex-column h-100">
+        
+        <!-- navbar -->
+        <header>
+            <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-primary">
+                <a class="navbar-brand" href="/">
+                    <div class="container">
+                    <i class="fa-solid fa-store text-light" aria-hidden="true"></i>
+                    Minimercado
+                </a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" 
+                data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" 
+                aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarCollapse">
+                    <ul class="navbar-nav me-auto mb-2 mb-md-0">
+                    <li class="nav-item">
+                        <a id="navbarlia0" class="nav-link" href="/">Inicio</a>
+                    </li>
+                    <li class="nav-item">
+                        <a id="navbarlia1" class="nav-link" href="/catalogo" aria-disabled="true">Catalogo</a>
+                    </li>
+                    <li class="nav-item">
+                        <a id="navbarlia2" class="nav-link" href="/sobre">Sobre</a>
+                    </li>
+                    <li class="nav-item">
+                        <a id="navbarlia3" class="nav-link disabled" href="#" aria-disabled="true">Login</a>
+                    </li>
+                    </ul>
+                </div>
+                </div>
+            </nav>
+        </header>
+
+        <!-- conteudo -->
+        <main class="flex-shrink-0">
+            <div class="container">
+                <div class="mt-4">&NonBreakingSpace;</div>
+                <h1 class="mt-5">
+                    {% block title %}
+                    Conteudo
+                    {% endblock title %}
+                </h1>
+                {% block content %}
+                <p class="lead">
+                    Conteudo conteudo conteud conteudo con conte conteudo cont c conteudo 
+                    conte, conteud conteudo con conte conteudo - cont c cont: c, conteudo.
+                </p>
+                <p class="lead">
+                    Con, c cont c. Cont conteudo conte con conteudo conteud, conte conteudo c 
+                    cont conteudo conte con conteudo conteud conteudo conteudo!
+                </p>
+                {% endblock content %}
+            </div>
+        </main>
+
+        <!-- rodape -->
+        <footer class="footer mt-auto py-3 bg-light">
+            <div class="container">
+                <span class="text-muted">2022 - Por <a class="link" href="https://github.com/jrmsrs">jrmsrs</a></span>
+            </div>
+        </footer>
+
+
+        <script src="{% static 'js/bootstrap.bundle.min.js' %}"></script>
+        <script src="{% static 'js/jquery-3.6.0.min.js' %}"></script>
+        <script>
+            // Script pra setar a classe do link ativo na navbar para "active" (classe Bootstrap)
+            $(document).ready(function(){
+                const listItems = $("#navbarCollapse li")
+                const url = $(location).attr('pathname');
+                const pathName = url.substring(url.indexOf('/')+1)
+                listItems.each(function(i){ //contador i = 0
+                    let navItem = $("#navbarlia" + i++)
+                    // Obtem como string o que está entre "<a id=....>Xxyyzz</a>"
+                    let navItemName = navItem.text().toLowerCase()                    
+                    // Excepcionalmente a página "Inicio" pertence ao path "" - deve ser comparado com uma string vazia
+                    if (navItemName=="inicio") navItemName = ""
+                    // Quando o pathName for igual ao que há dentro do elemento <a> (em lowercase) especifico
+                    if (navItemName==pathName) navItem.addClass("active")
+                })
+            })
+        </script>
+    </body>
+</html>

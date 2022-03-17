@@ -1,0 +1,11 @@
+{% extends "pages/main_layout.html" %}
+
+{% firstof "Inicio" as temp_title %}
+
+{% block title %} Inicio {% endblock title %}
+
+{% block content %}
+    <p class="lead">
+        isto é inicio
+    </p>
+{% endblock content %}
