@@ -2,7 +2,6 @@
 
 Projeto será primariamente um site que lista, publicamente, o catalogo (como um encarte) de um minimercado, porém para os funcionários desse mercado, através de acesso restrito, controlará a venda dos caixas.
 
----
 
 ## Autorizações
 
@@ -43,13 +42,11 @@ Admin -- principais funçoes
   - /venda/id/rmv
   - /registrar 
 
----
 
 ## Futuramente
 
 - Tentar controlar estoques 
 
----
 
 ## Estrutura das tabelas
 
