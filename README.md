@@ -6,3 +6,10 @@
 
 ## Install dependencies
 `python -m pip install requirements.txt`
+
+## Run Django server
+`python manage.py runserver`
+
+## Opcional: 
+- `python manage.py createsuperuser`
+- logar em http://localhost:8000/administrativum
