@@ -1,11 +1,14 @@
 {% extends "pages/main_layout.html" %}
 
-{% firstof "Inicio" as temp_title %}
-
-{% block title %} Inicio {% endblock title %}
+{% block headtitle %} Inicio {% endblock headtitle %}
 
 {% block content %}
-    <p class="lead">
-        isto é inicio
-    </p>
+<div class="position-absolute top-50 start-50 translate-middle">
+    <div class="h-auto d-inline-block d-flex flex-column align-items-center justify-content-center">
+        <p class="lead text-center">
+            São preços <strong>imbatíveis</strong>!<!--{{cliente}}-->
+        </p>
+        <a href="/catalogo" class="btn btn-primary">Acessar o catálogo</a>
+    </div>
+</div>
 {% endblock content %}

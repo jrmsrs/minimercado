@@ -1,10 +1,13 @@
 from django.views.generic import TemplateView
+from django.views.generic import ListView
+from .models import *
 
 # Create your views here.
 class IndexView(TemplateView):
     template_name = "pages/index.html"
 
-class CatalogoView(TemplateView):
+class CatalogoView(ListView):
+    model = Product
     template_name = "pages/catalogo.html"
 
 class SobreView(TemplateView):

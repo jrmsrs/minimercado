@@ -1,11 +1,10 @@
 {% extends "pages/main_layout.html" %}
 
-{% firstof "Sobre" as temp_title %}
-
-{% block title %} Sobre {% endblock title %}
+{% block headtitle %} Sobre {% endblock headtitle %}
+{% block blocktitle %} Sobre {% endblock blocktitle %}
 
 {% block content %}
     <p class="lead">
-        é sobre isto.
+        é sobre isso.
     </p>
 {% endblock content %}
