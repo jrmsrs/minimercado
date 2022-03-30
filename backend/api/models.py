@@ -11,7 +11,7 @@ class Sector(models.Model):
         return self.name
 
 class Category(models.Model):
-    setor = models.ForeignKey(Sector, verbose_name="Setor", on_delete=models.CASCADE)
+    sector = models.ForeignKey(Sector, verbose_name="Setor", on_delete=models.CASCADE)
     name = models.CharField(max_length=50,unique=True,verbose_name="Nome")
 
     class Meta:
