@@ -49,6 +49,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
 
     'pages.apps.PagesConfig',
+    'api.apps.ApiConfig'
     
 ]
 
