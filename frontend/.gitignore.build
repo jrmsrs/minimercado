@@ -1,0 +1,3 @@
+# gambiarra para sobrepor o .gitignore media/ do django e commitar
+
+!media/
