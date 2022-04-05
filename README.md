@@ -27,4 +27,5 @@ python manage.py runserver
 
 ## Opcional: 
 - `python manage.py createsuperuser`
-- logar em http://localhost:8000/administrativum
+   - logar em http://localhost:8000/administrativum/
+- o projeto frontend [(setup)](frontend/README.md) já está buildado em backend/build
