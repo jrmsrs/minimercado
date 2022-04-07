@@ -31,7 +31,7 @@ function ListProducts() {
                         <a 
                           href={'https://wa.me/?text=Olá! Eu tenho interesse em ' + product.name.toUpperCase()} 
                           className="btn btn-primary btn-sm" 
-                          target="_blank">
+                          target="_blank" rel="noreferrer">
                             Comprar
                         </a>
                     </div>
