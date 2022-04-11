@@ -20,13 +20,16 @@ function Header() {
                   <Link className="nav-link" to="/">Inicio</Link>
                 </li>
                 <li className="nav-item">
-                  <Link className="nav-link" to="/catalogo" aria-disabled="true">Catalogo</Link>
+                  <Link className="nav-link" to="/catalogo">Catalogo</Link>
                 </li>
                 <li className="nav-item">
                   <Link className="nav-link" to="/sobre">Sobre</Link>
                 </li>
                 <li className="nav-item">
-                  <Link className="nav-link disabled" to="/x" aria-disabled="true">Área restrita</Link>
+                  <Link className="nav-link disabled" to="/x">Área <span className="d-sm-inline d-md-none d-lg-inline">restrita</span> </Link>
+                </li>
+                <li className="nav-item">
+                  <Link className="nav-link" to="/add">add</Link>
                 </li>
               </ul>
             </div>
