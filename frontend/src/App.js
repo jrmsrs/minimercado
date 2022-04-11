@@ -5,6 +5,7 @@ import Footer from './components/layout/Footer'
 import Home from './components/pages/Home'
 import About from './components/pages/About'
 import ListProducts from './components/pages/catalog/ListProducts'
+import CreateProductFormik from './components/pages/catalog/CreateProductFormik'
 
 function App() {
   return (
@@ -23,6 +24,10 @@ function App() {
           <Route 
             path="/catalogo"
             element={<ListProducts />}
+          />
+          <Route 
+            path="/add"
+            element={<CreateProductFormik />}
           />
         </Routes>
       </div>

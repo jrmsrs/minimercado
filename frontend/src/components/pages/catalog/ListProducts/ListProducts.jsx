@@ -1,11 +1,11 @@
 import { useEffect, useState } from 'react'
 
 function ListProducts() {
-  
+
     const [products,setProducts]=useState([])
         
     useEffect(()=>{
-      fetch('http://0.0.0.0:8000/api/product')
+      fetch(`${global.$baseUrl}/product`)
         .then(res => res.json())
         .then(data => setProducts(data))
     })
