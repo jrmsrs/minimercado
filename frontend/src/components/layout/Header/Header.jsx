@@ -2,13 +2,13 @@ import { Link } from 'react-router-dom'
 import './Header.css'
 
 function Header() {
+
     function handleCollapse() {
       document.getElementById("navbarCollapse").classList.remove("show")
       document.getElementById("navbarBtn").classList.add("collapsed")
     }
-
+    
     return (
-      
         <div className="mb-5">
         <nav className="navbar navbar-expand-md navbar-dark fixed-top bg-primary">
           <div className="container">
@@ -40,23 +40,6 @@ function Header() {
                 </li>
               </ul>
             </div>
-            {/* <Link to="/">
-              <img src={logo} alt="Costs" />
-            </Link>
-            <ul className={styles.list}>
-              <li className={styles.item}>
-                <Link to="/">Home</Link>
-              </li>
-              <li className={styles.item}>
-                <Link to="/projects">Projetos</Link>
-              </li>
-              <li className={styles.item}>
-                <Link to="/company">Empresa</Link>
-              </li>
-              <li className={styles.item}>
-                <Link to="/contact">Contato</Link>
-              </li>
-            </ul> */}
           </div>
         </nav>
         </div>
