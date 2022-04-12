@@ -96,7 +96,7 @@ function CreateProductFormik() {
                         <Field 
                           readOnly={field.read_only}
                           disabled={field.read_only}
-                          className="form-control form-control-sm"
+                          className={field.type!=='field'?'form-control form-control-sm':'form-select form-select-sm'}
                           name={field.name} 
                           id={field.name} 
                           placeholder={field.type!=='field'?field.label:""} 
