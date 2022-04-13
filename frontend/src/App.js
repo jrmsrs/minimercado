@@ -11,6 +11,7 @@ function App() {
   return (
     <Router>
       <Header />
+      <main className='flex-shrink-0'>
       <div className="container text-light">
         <Routes>
           <Route 
@@ -31,6 +32,7 @@ function App() {
           />
         </Routes>
       </div>
+      </main>
       <Footer />
     </Router>
   );
