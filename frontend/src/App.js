@@ -6,13 +6,13 @@ import Home from './components/pages/Home'
 import About from './components/pages/About'
 import ListProducts from './components/pages/catalog/ListProducts'
 import CreateProductFormik from './components/pages/catalog/CreateProductFormik'
+import DivContainer from './components/layout/DivContainer'
 
 function App() {
   return (
     <Router>
       <Header />
-      <main className='flex-shrink-0'>
-      <div className="container text-light">
+      <DivContainer>
         <Routes>
           <Route 
             exact path="/"
@@ -31,8 +31,7 @@ function App() {
             element={<CreateProductFormik />}
           />
         </Routes>
-      </div>
-      </main>
+      </DivContainer>
       <Footer />
     </Router>
   );
