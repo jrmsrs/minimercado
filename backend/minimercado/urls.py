@@ -16,9 +16,11 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include, re_path
 from django.views.generic import TemplateView
+from django.shortcuts import redirect
 
 urlpatterns = [
     path('administrativum/', admin.site.urls),
+    path('administrativum', lambda request:redirect('administrativum/', permanent=False)),
     path('api-auth/', include('rest_framework.urls')),
     path('api/', include('api.urls')),
 ]
