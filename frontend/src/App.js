@@ -4,8 +4,8 @@ import Header from './components/layout/Header'
 import Footer from './components/layout/Footer'
 import Home from './components/pages/Home'
 import About from './components/pages/About'
-import ListProducts from './components/pages/catalog/ListProducts'
-import CreateProductFormik from './components/pages/catalog/CreateProductFormik'
+import ListObjects from './components/pages/catalog/ListObjects'
+import AddObject from './components/pages/catalog/AddObject'
 import DivContainer from './components/layout/DivContainer'
 
 function App() {
@@ -23,12 +23,12 @@ function App() {
             element={<About />}
           />
           <Route 
-            path="/catalogo"
-            element={<ListProducts />}
+            path="/list/:obj"
+            element={<ListObjects />}
           />
           <Route 
-            path="/add"
-            element={<CreateProductFormik />}
+            path="/add/:obj"
+            element={<AddObject />}
           />
         </Routes>
       </DivContainer>

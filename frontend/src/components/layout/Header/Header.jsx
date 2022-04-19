@@ -27,16 +27,16 @@ function Header() {
                   <Link className="nav-link" to="/" onClick={handleCollapse}>Inicio</Link>
                 </li>
                 <li className="nav-item">
-                  <Link className="nav-link" to="/catalogo" onClick={handleCollapse}>Catalogo</Link>
+                  <Link className="nav-link" to="/list/product" onClick={handleCollapse}>Catalogo</Link>
                 </li>
                 <li className="nav-item">
                   <Link className="nav-link" to="/sobre" onClick={handleCollapse}>Sobre</Link>
                 </li>
                 <li className="nav-item">
-                  <Link className="nav-link disabled" to="/x" onClick={handleCollapse}>Área <span className="d-sm-inline d-md-none d-lg-inline">restrita</span> </Link>
+                  <Link className="nav-link" to="/add/product" onClick={handleCollapse}>add</Link>
                 </li>
                 <li className="nav-item">
-                  <Link className="nav-link" to="/add" onClick={handleCollapse}>add</Link>
+                  <Link className="nav-link disabled" to="/x" onClick={handleCollapse}>Área <span className="d-sm-inline d-md-none d-lg-inline">restrita</span> </Link>
                 </li>
               </ul>
             </div>
