@@ -1,15 +1,20 @@
 import { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
 import { Link } from 'react-router-dom'
+import Modal from '../../../layout/Modal'
 
 function ListObjects() {
 
-    const { obj } = useParams()
-    const objLabel = switchObjLabel()
+    const { table } = useParams()
+    const tableLabel = switchTableLabel()
     const [objects,setObjects]=useState([])
 
-    function switchObjLabel() {
-        switch (obj) {
+    function handleDelete(table,id) {
+        console.log("removeu "+table+"/"+id)
+    }
+
+    function switchTableLabel() {
+        switch (table) {
             case 'sector':
                 return 'setores'
             case 'category':
@@ -24,17 +29,17 @@ function ListObjects() {
     }
         
     useEffect(()=>{
-      fetch(`${global.$baseUrl}/${obj}`)
+      fetch(`${global.$baseUrl}/${table}`)
         .then(res => res.json())
         .then(data => setObjects(data))
     })
   
     return (
-        objLabel === 'invalid'?
+        tableLabel === 'invalid'?
         <>
-            <h1 className="text-light font-weight-light"> 404 - Objeto {obj} não existe </h1>
+            <h1 className="text-light font-weight-light"> 404 - Objeto {table} não existe </h1>
         </>:
-        obj === 'product'?
+        table === 'product'?
         <>
             <div className='row'>
             {objects.map( product => 
@@ -50,21 +55,42 @@ function ListObjects() {
                             </p>
                             
                         </div>
-                        <div className="card-header">
+                        <div className="card-header text-dark">
                             <a 
                             href={'https://wa.me/?text=Olá! Eu tenho interesse em ' + product.name.toUpperCase()} 
-                            className="btn btn-primary btn-sm" 
+                            className="btn btn-primary btn-sm mb-2 w-100" 
                             target="_blank" rel="noreferrer">
                                 Comprar
                             </a>
+                            <span>admin:</span>
+                            <Link 
+                              className="btn btn-sm btn-outline-primary" 
+                              style={{margin:"0 3px", padding:"0 7px"}} 
+                              to={`/list/${table}/update/${product.id}`}
+                            >
+                                Upd
+                            </Link>
+                            <a 
+                              className="btn btn-sm btn-outline-danger" 
+                              style={{margin:"0 3px", padding:"0 7px", cursor: "pointer"}} 
+                              data-bs-toggle="modal" 
+                              data-bs-target={"#staticBackdrop"+product.id}
+                            >
+                                Rmv
+                            </a>
                         </div>
                     </div>
+                    <Modal object={table} name={product.name} index={product.id}>
+                        <button type="button" className="btn btn-danger" onClick={()=>handleDelete(table,product.id)}>
+                            Remover
+                        </button>
+                    </Modal>
                 </div>
             )}
             </div>
         </>:
         <>
-            <h1 className="text-light font-weight-light"> {objLabel} </h1>
+            <h1 className="text-light font-weight-light"> {tableLabel} </h1>
 
             <ul className='list-group'>
             {objects.map( object => 
@@ -75,13 +101,30 @@ function ListObjects() {
                 >
                     <span>{object.name}</span>
                     <span>
-                        <Link className="ps-2 link-secondary text-decoration-none" to={`/list/${obj}/update/${object.id}`}>Upd</Link>
-                        <Link className="ps-2 link-danger text-decoration-none" to={`/list/${obj}/remove/${object.id}`}>Rmv</Link>
+                        <Link 
+                          className="ps-2 link-secondary text-decoration-none" 
+                          to={`/list/${table}/update/${object.id}`}
+                        >
+                            Upd
+                        </Link>
+                        <a 
+                          className="ps-2 link-danger text-decoration-none" 
+                          style={{cursor: "pointer"}} 
+                          data-bs-toggle="modal" 
+                          data-bs-target={"#staticBackdrop"+object.id}
+                        >
+                            Rmv
+                        </a>
                     </span>
-                    
+                    <Modal object={table} name={object.name} index={object.id}>
+                        <button type="button" className="btn btn-danger" onClick={()=>handleDelete(table,object.id)}>
+                            Remover
+                        </button>
+                    </Modal>
                 </li>
             )}
             </ul>
+            
         </>
     )
   }

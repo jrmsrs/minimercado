@@ -23,7 +23,7 @@ function App() {
             element={<About />}
           />
           <Route 
-            path="/list/:obj"
+            path="/list/:table"
             element={<ListObjects />}
           />
           <Route 
