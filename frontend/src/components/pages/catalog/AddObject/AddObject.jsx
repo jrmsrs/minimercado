@@ -1,10 +1,11 @@
 import { Formik, Field, Form, ErrorMessage } from 'formik'
 import schema from '../schema'
 import React, { useEffect, useState } from 'react'
-import { useParams } from 'react-router-dom'
+import { useParams, useNavigate } from 'react-router-dom'
 
 function AddObject() {
 
+    const navigate = useNavigate()
     const { table } = useParams()
     const tableLabel = switchObjLabel()
 
@@ -65,10 +66,25 @@ function AddObject() {
         }
     }
 
-    function onSubmit(values) {
-        console.log('SUBMIT',values)
+    async function onSubmit(values) {
+        let errMsg=null
+        try {
+            const response = await fetch(`${global.$baseUrl}/${table}`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Accept': 'application/json'
+                },
+                body: JSON.stringify(values)
+            })
+            if (!response.ok) throw Error("400, objeto com esse nome ja existe ou inseriu caracteres nao permitidos");
+        } catch (err) {
+            errMsg = err.message;
+        } finally {
+            errMsg===null ? navigate(`/list/${table}?success`) : console.log(errMsg)
+        }
     }
-    //let fkName=''
+
     function defaultValuesClear(){
         const arr=[]
         getObjArray().forEach((value,i) => {

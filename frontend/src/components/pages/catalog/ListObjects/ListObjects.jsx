@@ -32,7 +32,7 @@ function ListObjects() {
       fetch(`${global.$baseUrl}/${table}`)
         .then(res => res.json())
         .then(data => setObjects(data))
-    })
+    },[]) // eslint-disable-line react-hooks/exhaustive-deps
   
     return (
         tableLabel === 'invalid'?
@@ -43,7 +43,7 @@ function ListObjects() {
         <>
             <div className='row'>
             {objects.map( product => 
-                <div key={product.id} className="col-6 col-sm-4 col-md-3 col-xl-2 mb-4">
+                <div key={product.id} id={product.id} className="col-6 col-sm-4 col-md-3 col-xl-2 mb-4">
                     <div className="card mb-sm-2 h-100">
                         <img src="https://avatars.githubusercontent.com/u/38083522?v=4" className="card-img-top" alt="..." />
                         <div className="card-body text-dark">
@@ -70,14 +70,14 @@ function ListObjects() {
                             >
                                 Upd
                             </Link>
-                            <a 
+                            <span
                               className="btn btn-sm btn-outline-danger" 
                               style={{margin:"0 3px", padding:"0 7px", cursor: "pointer"}} 
                               data-bs-toggle="modal" 
                               data-bs-target={"#staticBackdrop"+product.id}
                             >
                                 Rmv
-                            </a>
+                            </span>
                         </div>
                     </div>
                     <Modal object={table} name={product.name} index={product.id}>
@@ -96,6 +96,7 @@ function ListObjects() {
             {objects.map( object => 
                 <li
                   key={object.id} 
+                  id={object.id}
                   className="bg-dark text-light list-group-item d-flex justify-content-between" 
                   
                 >
@@ -107,14 +108,14 @@ function ListObjects() {
                         >
                             Upd
                         </Link>
-                        <a 
+                        <span 
                           className="ps-2 link-danger text-decoration-none" 
                           style={{cursor: "pointer"}} 
                           data-bs-toggle="modal" 
                           data-bs-target={"#staticBackdrop"+object.id}
                         >
                             Rmv
-                        </a>
+                        </span>
                     </span>
                     <Modal object={table} name={object.name} index={object.id}>
                         <button type="button" className="btn btn-danger" onClick={()=>handleDelete(table,object.id)}>
