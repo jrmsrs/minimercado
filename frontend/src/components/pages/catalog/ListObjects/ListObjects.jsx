@@ -1,16 +1,18 @@
 import { useEffect, useState } from 'react'
-import { useParams } from 'react-router-dom'
+import { useParams, useNavigate } from 'react-router-dom'
 import { Link } from 'react-router-dom'
 import Modal from '../../../layout/Modal'
 
 function ListObjects() {
 
+    const navigate = useNavigate()
     const { table } = useParams()
     const tableLabel = switchTableLabel()
     const [objects,setObjects]=useState([])
 
     function handleDelete(table,id) {
-        console.log("removeu "+table+"/"+id)
+        fetch(`${global.$baseUrl}/${table}/${id}`,{method:'delete'})
+        .then(function(){ navigate(0) })
     }
 
     function switchTableLabel() {
