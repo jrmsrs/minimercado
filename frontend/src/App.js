@@ -6,6 +6,7 @@ import Home from './components/pages/Home'
 import About from './components/pages/About'
 import ListObjects from './components/pages/catalog/ListObjects'
 import AddObject from './components/pages/catalog/AddObject'
+import UpdateObject from './components/pages/catalog/UpdateObject'
 import DivContainer from './components/layout/DivContainer'
 
 function App() {
@@ -30,6 +31,10 @@ function App() {
             path="/add/:obj"
             element={<AddObject />}
           />
+          <Route
+            path="/update/:table/:id"
+            element={<UpdateObject />}
+          / >
         </Routes>
       </DivContainer>
       <Footer />

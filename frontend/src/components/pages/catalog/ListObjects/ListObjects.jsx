@@ -66,7 +66,7 @@ function ListObjects() {
                             <Link 
                               className="btn btn-sm btn-outline-primary" 
                               style={{margin:"0 3px", padding:"0 7px"}} 
-                              to={`/list/${table}/update/${product.id}`}
+                              to={`/update/${table}/${product.id}`}
                             >
                                 Upd
                             </Link>
@@ -103,7 +103,7 @@ function ListObjects() {
                     <span>
                         <Link 
                           className="ps-2 link-secondary text-decoration-none" 
-                          to={`/list/${table}/update/${object.id}`}
+                          to={`/update/${table}/${object.id}`}
                         >
                             Upd
                         </Link>
