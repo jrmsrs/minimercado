@@ -5,14 +5,14 @@ import { useParams } from 'react-router-dom'
 
 function AddObject() {
 
-    const { obj } = useParams()
-    const objLabel = switchObjLabel()
+    const { table } = useParams()
+    const tableLabel = switchObjLabel()
 
     const [form,setForm]=useState([])
     const [fk,setFk]=useState([])
         
     useEffect(()=>{
-        fetch(`${global.$baseUrl}/${obj}`,{method:'options'})
+        fetch(`${global.$baseUrl}/${table}`,{method:'options'})
         .then(res => res.json())
         .then(function(data){
             // checar se tem campo chave estrangeira
@@ -22,7 +22,7 @@ function AddObject() {
                 arr.push(Object.assign(fieldsData[key], {name: key}));
             }
             let fkField 
-            arr.map( (field) => {
+            arr.forEach( (field) => {
                 if (field.type==='field') 
                     fkField=field.name
             })
@@ -33,10 +33,10 @@ function AddObject() {
                 .then(res => res.json())
                 .then(data => setFk(data))
         })
-    },[])
+    },[]) // eslint-disable-line react-hooks/exhaustive-deps
 
     function switchObjLabel() {
-        switch (obj) {
+        switch (table) {
             case 'sector':
                 return 'setor'
             case 'category':
@@ -90,16 +90,16 @@ function AddObject() {
     }
 
     return (
-        objLabel === 'invalid'? 
+        tableLabel === 'invalid'? 
         <>
-            <h1 className="text-light font-weight-light"> 404 - Objeto {obj} não existe </h1>
+            <h1 className="text-light font-weight-light"> 404 - Tabela {table} não existe </h1>
         </>:
         <>
-            <h1 className="text-light font-weight-light"> Adicionar {objLabel} </h1>
+            <h1 className="text-light font-weight-light"> Adicionar {tableLabel} </h1>
             
             <Formik 
             initialValues={defaultValuesClear()}
-            validationSchema={schema(obj)}
+            validationSchema={schema(table)}
             onSubmit={onSubmit}
             validateOnMount
             enableReinitialize
@@ -128,7 +128,7 @@ function AddObject() {
                             >
                                 {field.type==='field'?
                                 <>
-                                    <option value="" disabled defaultValue hidden>{field.label}</option>
+                                    <option value={""} defaultValue>----</option>
                                     {fk.map((foreignKey)=><option key={foreignKey.id} value={foreignKey.id}>{foreignKey.name}</option>)}                            
                                 </>
                                 :null}

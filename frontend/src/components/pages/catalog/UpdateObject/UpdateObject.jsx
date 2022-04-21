@@ -6,7 +6,7 @@ import { useParams } from 'react-router-dom'
 function UpdateObject() {
 
     const { table, id } = useParams()
-    const objLabel = switchObjLabel()
+    const tableLabel = switchTableLabel()
 
     const [form,setForm]=useState([])
     const [fk,setFk]=useState([])
@@ -39,7 +39,7 @@ function UpdateObject() {
         })
     },[]) // eslint-disable-line react-hooks/exhaustive-deps
 
-    function switchObjLabel() {
+    function switchTableLabel() {
         switch (table) {
             case 'sector':
                 return 'setor'
@@ -70,7 +70,7 @@ function UpdateObject() {
     }
 
     function onSubmit(values) {
-        console.log('SUBMIT',initVals)
+        console.log('SUBMIT',values)
     }
 
     function getObjArray(){
@@ -83,12 +83,12 @@ function UpdateObject() {
 
 
     return (
-        objLabel === 'invalid'? 
+        tableLabel === 'invalid'? 
         <>
-            <h1 className="text-light font-weight-light"> 404 - Objeto {table} não existe </h1>
+            <h1 className="text-light font-weight-light"> 404 - Tabela {table} não existe </h1>
         </>:
         <>
-            <h1 className="text-light font-weight-light"> Atualizar {objLabel} </h1>
+            <h1 className="text-light font-weight-light"> Atualizar {tableLabel} </h1>
             
             <Formik 
             initialValues={initVals}
@@ -118,11 +118,10 @@ function UpdateObject() {
                               type={field.type!=='field'?switchFieldType(field.type):""} 
                               step={field.type==='decimal'?'0.05':''} 
                               as={field.type==='field'?'select':''}
-                              
                             >
                                 {field.type==='field'?
                                 <>
-                                    <option value={""} defaultValue>----</option>
+                                    <option value={""}>----</option>
                                     {fk.map((foreignKey)=><option key={foreignKey.id} value={foreignKey.id}>{foreignKey.name}</option>)}                            
                                 </>
                                 :null}

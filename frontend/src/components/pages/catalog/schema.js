@@ -16,7 +16,7 @@ function schema(obj){
             return Yup.object().shape({
                 name: Yup.string().min(5).required(),
                 price: Yup.number().positive().required(),
-                category: Yup.number(),
+                category: Yup.number().nullable(),
             })
         case 'sale':
             return Yup.object().shape({
